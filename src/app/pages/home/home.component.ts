@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BlogPost, BlogPostService } from 'src/app/services/blog-post.service';
+
+import { BlogPostService } from 'src/app/services/blog-post.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,13 +10,14 @@ import { BlogPost, BlogPostService } from 'src/app/services/blog-post.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  posts: BlogPost[] = []
-
+  posts: any[] = [];
   loading = true;
   errorMessage = '';
 
-  constructor(private blogService: BlogPostService, private sanitizer: DomSanitizer) { }
-
+  constructor(
+    private blogService: BlogPostService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.loadPosts();
@@ -24,20 +27,20 @@ export class HomeComponent implements OnInit {
     this.loading = true;
 
     this.blogService.getAllPost().subscribe({
-      next: (data) => {
-        this.posts = data;
+      next: (posts) => {
+        this.posts = posts;
         this.loading = false;
       },
       error: () => {
-        this.errorMessage = "Unable to load posts.";
+        this.errorMessage = 'Unable to load posts.';
         this.loading = false;
       }
     });
   }
+
   getSafeHtml(html: string): SafeHtml {
     // Angular's normal HTML binding sanitizes HTML.
     // Do not use bypassSecurityTrustHtml for user-authored posts.
     return this.sanitizer.sanitize(1, html) ?? '';
   }
-
 }

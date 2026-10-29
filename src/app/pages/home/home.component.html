@@ -1,38 +1,46 @@
 <div class="mb-4">
-    <h2 class="fw-bold">Latest Blog Posts</h2>
-    <p class="text-muted">Discover posts from our community.</p>
+  <h2 class="fw-bold">Latest Blog Posts</h2>
+  <p class="text-muted">
+    Discover posts from our community.
+  </p>
 </div>
 
-
-
 <div *ngIf="loading" class="text-center py-5">
-    Loading posts.....
+  Loading posts...
 </div>
 
 <div *ngIf="errorMessage" class="alert alert-danger">
-    {{errorMessage}}
+  {{ errorMessage }}
 </div>
 
-<div *ngIf="!loading && !errorMessage && posts.length===0" class="alert alert-light border">
-    NoPost yet. Click Add post to create the first one
+<div *ngIf="!loading && !errorMessage && posts.length === 0"
+     class="alert alert-light border">
+  No posts yet. Click Add Post to create the first one.
 </div>
 
 <div class="row g-4" *ngIf="!loading">
-    <div class="col-12" *ngFor="let post of posts">
-        <article class="card shadow-sm">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="badge bg-secondary">
-                        {{post.roleName}}
-                    </span>
+  <div class="col-12" *ngFor="let post of posts">
+    <article class="card shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between
+                    align-items-center mb-3">
+          <span class="badge bg-secondary">
+            {{ post.roleName }}
+          </span>
 
-                    <small class="text-muted">
-                        {{post.createdAt | date: 'mediumDate'}}
-                    </small>
-                </div>
-                <h3 class="card-title mb-2">{{post.title}}</h3>
-                <div class="post-description" [innerHTML]="getSafeHtml(post.description)"></div>
-            </div>
-        </article>
-    </div>
+          <small class="text-muted">
+            {{ post.createdAt | date:'mediumDate' }}
+          </small>
+        </div>
+
+        <h3 class="card-title h4">
+          {{ post.title }}
+        </h3>
+
+        <div class="post-description mb-3"
+             [innerHTML]="getSafeHtml(post.description)">
+        </div>
+      </div>
+    </article>
+  </div>
 </div>

@@ -1,18 +1,18 @@
-.post-description{
-    line-height: 1.8;
-    overflow-wrap: anywhere;
+.post-description {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 
-
-.post-description ul,.post-description ol{
-    padding-left: 1.5rem;
+.post-description ul,
+.post-description ol {
+  padding-left: 1.5rem;
 }
 
-.post-description p{
-    margin-bottom: 0.75rem;
+.post-description p {
+  margin-bottom: 0.75rem;
 }
 
-.card{
-    border:0;
-    border-radius: 12px;
+.card {
+  border: 0;
+  border-radius: 12px;
 }
